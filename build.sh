@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-release_url="https://github.com/weholdings2026/driveforma-website/releases/download/v120/DriveForma-deploy-v120.zip"
-release_sha256="adc6d8a4b7848579f3567e832766c0c8b52269384240688b05ad449d208ad1a3"
+release_url="https://github.com/weholdings2026/driveforma-website/releases/download/v121/DriveForma-deploy-v121.zip"
+release_sha256="ce7e0f8144f4de87751b45ad0de9e94f0af407f198cd2968dd4bacee37082fe6"
 release_tmp="$(mktemp -d)"
 trap 'rm -rf "$release_tmp"' EXIT
 archive="$release_tmp/website.zip"
@@ -19,4 +19,4 @@ unzip -q "$archive" -d "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
 rm -rf -- public
 mv "$release_tmp/public" public
-printf 'DriveForma marketing website v120 ready.\n'
+printf 'DriveForma marketing website v121 ready.\n'
