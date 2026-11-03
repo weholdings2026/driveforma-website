@@ -1,0 +1,10 @@
+# Defines only the new marketing website, never the existing Drive app.
+services:
+  - type: web
+    name: driveforma-marketing
+    runtime: static
+    buildCommand: bash build.sh
+    staticPublishPath: ./public
+    envVars:
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
