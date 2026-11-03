@@ -10,6 +10,8 @@ This repository deploys the marketing website from a versioned GitHub Release ZI
 - Download: [DriveForma-deploy-v117.zip](https://github.com/weholdings2026/driveforma-website/releases/download/v117/DriveForma-deploy-v117.zip)
 - SHA-256: `40f8dfb3c81bff7ffa3dc5fc8da841a71ddfb8141715429484e947e36c7f7468`
 - ZIP size: 45,197,307 bytes
+- Verified v117 wrapper commit: `be950a596babee9c7c80cab51445821cfdcfd582`
+- Successful Render deploy: `dep-dbkmhjc9v7es73epk420`
 
 The ZIP contains the 164 public website files at its root, including `index.html` and the font license. It contains no internal notes, audits, application backend, credentials or customer records. Keep a downloaded copy as the website backup.
 
@@ -17,10 +19,12 @@ v117 repairs AI and Teams scroll motion, adds walkthrough photo motion, removes 
 
 ## Publish the release, then deploy
 
-1. Update `README.md` and `build.sh` in this repository together. Keep `render.yaml` and `.gitignore` unchanged.
-2. Publish a GitHub Release tagged `v117` and attach the exact `DriveForma-deploy-v117.zip` asset. Do not rename or replace the asset: its SHA-256 is pinned in `build.sh`.
+1. Publish the new GitHub Release and attach its exact ZIP asset **before** updating the repository's `build.sh` pin. For v117, the asset is `DriveForma-deploy-v117.zip`. Preserve the published asset bytes and filename.
+2. Update `README.md` and `build.sh` together with the new version, URL and SHA-256. Keep `render.yaml` and `.gitignore` unchanged.
 3. Use the existing Render marketing Static Site, `driveforma-marketing` (`srv-dbklfrui0phs73akbm5g`). Keep Root Directory blank, Build Command `bash build.sh`, Publish Directory `public`, and `SKIP_INSTALL_DEPS=true`.
-4. Trigger Manual Deploy for the wrapper commit containing the v117 URL and hash. This service uses a public Git URL, so a GitHub push or release upload does not itself trigger a deploy.
+4. **Automatic deploy on repository commits is active.** A commit can start the build immediately. If a build starts before its release asset is available, publish the asset and use Manual Deploy for the same wrapper commit after the asset is ready.
+
+For v117, the initial automatic build started before the asset existed and failed. After the release was published, manual deploy `dep-dbkmhjc9v7es73epk420` succeeded from wrapper commit `be950a596babee9c7c80cab51445821cfdcfd582`.
 
 The build downloads the ZIP over HTTPS, verifies its SHA-256 before extraction, checks `index.html`, and publishes only the extracted `public/` directory. An unpublished/missing asset or a mismatched hash fails the build.
 
@@ -28,7 +32,7 @@ No SPA rewrite is required: this is a multi-page HTML website. Validate the home
 
 ## Future releases and rollback
 
-For the next website revision, publish a new tag and ZIP asset, then update both the release URL and SHA-256 in `build.sh`. Preserve prior release assets. To restore v117, redeploy the wrapper commit that pins the v117 URL and hash above. The ZIP can also be downloaded and used as a complete static website backup.
+For the next website revision, publish a new tag and ZIP asset first, then update both the release URL and SHA-256 in `build.sh`. Preserve prior release assets. To restore v117, redeploy verified wrapper commit `be950a596babee9c7c80cab51445821cfdcfd582`, which pins the v117 URL and hash above. The ZIP can also be downloaded and used as a complete static website backup.
 
 The v116 rollback remains available:
 
