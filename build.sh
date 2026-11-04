@@ -17,6 +17,11 @@ fi
 mkdir "$release_tmp/public"
 unzip -q "$archive" -d "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
+
+# Keep the existing sign-in controls pointed at the production app.
+sed "s|loginUrl:'https://driveforma-ui-preview.onrender.com/auth/login'|loginUrl:'https://app.driveforma.ai/auth/login'|" \
+  "$release_tmp/public/brand-config.js" > "$release_tmp/brand-config.js"
+mv "$release_tmp/brand-config.js" "$release_tmp/public/brand-config.js"
 rm -rf -- public
 mv "$release_tmp/public" public
 printf 'DriveForma marketing website v123 ready.\n'
