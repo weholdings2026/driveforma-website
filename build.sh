@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-release_url="https://github.com/weholdings2026/driveforma-website/releases/download/v146/DriveForma-deploy-v146.zip"
-release_sha256="605c5c55187ef104fe463056d6c00565abe8c9cbeba96e2465308d67f3b7ce79"
+release_url="https://github.com/weholdings2026/driveforma-website/releases/download/v145/DriveForma-deploy-v145.zip"
+release_sha256="10262bd71c8daf0edf86c57566fbeb3fe8f66dc391fbd4fcdb0ee292c54492e5"
 release_tmp="$(mktemp -d)"
 trap 'rm -rf "$release_tmp"' EXIT
 archive="$release_tmp/website.zip"
@@ -14,8 +14,9 @@ else
   printf '%s  %s\n' "$release_sha256" "$archive" | shasum -a 256 --check -
 fi
 
-mkdir "$release_tmp/public"
-unzip -q "$archive" -d "$release_tmp/public"
+mkdir "$release_tmp/v145"
+unzip -q "$archive" -d "$release_tmp/v145"
+python3 website_v146_patch.py --source "$release_tmp/v145" --output "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
 
 # Keep the existing sign-in controls pointed at the production app.
