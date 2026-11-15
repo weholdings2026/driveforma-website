@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-release_url="https://github.com/weholdings2026/driveforma-website/releases/download/v123/DriveForma-deploy-v123.zip"
-release_sha256="489e26e738ca337af6facc927669dbb1e6eaf25944fe34488d461a8765a07b19"
+release_url="https://github.com/weholdings2026/driveforma-website/releases/download/v144/DriveForma-deploy-v144.zip"
+release_sha256="609763a105b84e8819ce42f477e9adf5b86aebae07b5a387d2e44a3303581fc5"
 release_tmp="$(mktemp -d)"
 trap 'rm -rf "$release_tmp"' EXIT
 archive="$release_tmp/website.zip"
@@ -24,4 +24,4 @@ sed "s|loginUrl:'https://driveforma-ui-preview.onrender.com/auth/login'|loginUrl
 mv "$release_tmp/brand-config.js" "$release_tmp/public/brand-config.js"
 rm -rf -- public
 mv "$release_tmp/public" public
-printf 'DriveForma marketing website v123 ready.\n'
+printf 'DriveForma marketing website v144 ready.\n'
