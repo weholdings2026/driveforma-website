@@ -16,7 +16,8 @@ fi
 
 mkdir "$release_tmp/v145"
 unzip -q "$archive" -d "$release_tmp/v145"
-python3 website_v146_patch.py --source "$release_tmp/v145" --output "$release_tmp/public"
+python3 website_v146_patch.py --source "$release_tmp/v145" --output "$release_tmp/v146"
+python3 website_v147_patch.py --source "$release_tmp/v146" --output "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
 
 # Keep the existing sign-in controls pointed at the production app.
@@ -25,4 +26,4 @@ sed "s|loginUrl:'https://driveforma-ui-preview.onrender.com/auth/login'|loginUrl
 mv "$release_tmp/brand-config.js" "$release_tmp/public/brand-config.js"
 rm -rf -- public
 mv "$release_tmp/public" public
-printf 'DriveForma marketing website v146 ready.\n'
+printf 'DriveForma marketing website v147 ready.\n'
