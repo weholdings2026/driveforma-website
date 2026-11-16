@@ -12,11 +12,15 @@ if command -v sha256sum >/dev/null 2>&1; then
 else
   printf '%s  %s\n' "$release_sha256" "$archive" | shasum -a 256 --check -
 fi
-mkdir "$release_tmp/public"
-unzip -q "$archive" -d "$release_tmp/public"
+mkdir "$release_tmp/v165"
+unzip -q "$archive" -d "$release_tmp/v165"
+python3 website_v166_patch.py --source "$release_tmp/v165" --output "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
-test -s "$release_tmp/public/walkthrough-cta-v165.css"
+test -s "$release_tmp/public/walkthrough-cta-v166.css"
+test -s "$release_tmp/public/font-assets/Drive-CTA-Fraunces.ttf"
+test -s "$release_tmp/public/font-assets/Fraunces-OFL.txt"
+test -s "$release_tmp/public/brand-assets/df-walkthrough-seal-v166.svg"
 test -s "$release_tmp/public/video-preview/driveforma-owner-film-loop.mp4"
 rm -rf -- public
 mv "$release_tmp/public" public
-printf 'DriveForma marketing website v165 ready.\n'
+printf 'DriveForma marketing website v166 ready.\n'
