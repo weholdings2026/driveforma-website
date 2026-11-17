@@ -14,8 +14,11 @@ else
 fi
 mkdir "$release_tmp/v165"
 unzip -q "$archive" -d "$release_tmp/v165"
-python3 website_v166_patch.py --source "$release_tmp/v165" --output "$release_tmp/public"
+python3 website_v166_patch.py --source "$release_tmp/v165" --output "$release_tmp/v166"
+python3 website_v167_patch.py --source "$release_tmp/v166" --output "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
+test -s "$release_tmp/public/navigation-v63.css"
+test -s "$release_tmp/public/navigation-v63.js"
 test -s "$release_tmp/public/walkthrough-cta-v166.css"
 test -s "$release_tmp/public/font-assets/Drive-CTA-Fraunces.ttf"
 test -s "$release_tmp/public/font-assets/Fraunces-OFL.txt"
@@ -23,4 +26,4 @@ test -s "$release_tmp/public/brand-assets/df-walkthrough-seal-v166.svg"
 test -s "$release_tmp/public/video-preview/driveforma-owner-film-loop.mp4"
 rm -rf -- public
 mv "$release_tmp/public" public
-printf 'DriveForma marketing website v166 ready.\n'
+printf 'DriveForma marketing website v167 ready.\n'
