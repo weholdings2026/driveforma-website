@@ -17,7 +17,8 @@ unzip -q "$archive" -d "$release_tmp/v165"
 python3 website_v166_patch.py --source "$release_tmp/v165" --output "$release_tmp/v166"
 python3 website_v167_patch.py --source "$release_tmp/v166" --output "$release_tmp/v167"
 python3 website_v168_patch.py --source "$release_tmp/v167" --output "$release_tmp/v168"
-python3 website_v170_patch.py --source "$release_tmp/v168" --output "$release_tmp/public"
+python3 website_v170_patch.py --source "$release_tmp/v168" --output "$release_tmp/v170"
+python3 website_v171_patch.py --source "$release_tmp/v170" --output "$release_tmp/public"
 test -s "$release_tmp/public/index.html"
 test -s "$release_tmp/public/navigation-v63.css"
 test -s "$release_tmp/public/navigation-v63.js"
@@ -26,4 +27,4 @@ test -s "$release_tmp/public/brand-assets/walkthrough-lettering.svg"
 test -s "$release_tmp/public/video-preview/driveforma-owner-film-loop.mp4"
 rm -rf -- public
 mv "$release_tmp/public" public
-printf 'DriveForma marketing website v170 ready.\n'
+printf 'DriveForma marketing website v171 ready.\n'
